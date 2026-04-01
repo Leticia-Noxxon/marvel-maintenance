@@ -43,6 +43,17 @@ function App() {
     }
   };
 
+  const handleInstall = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null);
+        setPwaInstallable(false);
+      }
+    }
+  };
+
   return (
     <div className="app">
       <header className="app-header">

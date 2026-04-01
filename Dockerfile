@@ -7,14 +7,15 @@ WORKDIR /app/frontend
 COPY frontend/package*.json ./
 
 # Instalar dependências com NODE_OPTIONS para mais memória
-ENV NODE_OPTIONS="--max-old-space-size=2048"
+ENV NODE_OPTIONS="--max-old-space-size=3072"
+ENV CI=false
 RUN npm install --legacy-peer-deps
 
 # Copiar código fonte
 COPY frontend/ ./
 
 # Fazer build para produção
-RUN npm run build --verbose
+RUN npm run build
 
 # Usar imagem Python para o backend
 FROM python:3.11-slim
