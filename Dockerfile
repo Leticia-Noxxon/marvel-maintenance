@@ -58,4 +58,4 @@ ENV PORT=8080
 EXPOSE 8080
 
 # Executar Flask
-CMD ["python", "-m", "flask", "run", "--host=0.0.0.0", "--port=8080"]
+CMD ["python", "backend/main.py"]

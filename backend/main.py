@@ -355,10 +355,11 @@ def internal_error(error):
 
 
 if __name__ == '__main__':
-    # Modo desenvolvimento
+    port = int(os.getenv('PORT', 8080))
+    is_production = os.getenv('FLASK_ENV') == 'production'
     app.run(
         host='0.0.0.0',
-        port=5000,
-        debug=True,
-        use_reloader=True
+        port=port,
+        debug=not is_production,
+        use_reloader=not is_production
     )
