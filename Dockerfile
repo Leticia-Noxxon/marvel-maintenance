@@ -8,7 +8,7 @@ COPY frontend/package*.json ./
 
 # Instalar dependências com NODE_OPTIONS para mais memória
 ENV NODE_OPTIONS="--max-old-space-size=2048"
-RUN npm ci --prefer-offline --no-audit
+RUN npm install --legacy-peer-deps
 
 # Copiar código fonte
 COPY frontend/ ./
