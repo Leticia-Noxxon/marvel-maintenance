@@ -1,0 +1,68 @@
+.geolocation-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.btn-localizacao {
+  padding: 10px 16px;
+  background: #388e3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.btn-localizacao:hover:not(:disabled) {
+  background: #2e7d32;
+  transform: translateY(-2px);
+}
+
+.btn-localizacao:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.mensagem-geo {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  animation: slideIn 0.3s ease;
+}
+
+.mensagem-geo.erro {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #f44336;
+}
+
+.mensagem-geo.sucesso {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #4caf50;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .btn-localizacao {
+    font-size: 13px;
+  }
+}

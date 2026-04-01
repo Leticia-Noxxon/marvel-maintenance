@@ -1,0 +1,79 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f0f4f8;
+}
+
+.app-header {
+  background: #1976d2;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  font-size: 24px;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.download-btn {
+  padding: 10px 20px;
+  background: #388e3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  background: #2e7d32;
+  transform: scale(1.05);
+}
+
+.install-btn {
+  padding: 10px 20px;
+  background: #f57c00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.install-btn:hover {
+  background: #e65100;
+  transform: scale(1.05);
+}
+
+.app-main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.app-footer {
+  background: #1976d2;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 12px;
+  margin-top: 20px;
+}

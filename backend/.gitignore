@@ -1,0 +1,12 @@
+# Pasta de arquivos carregados
+uploads/
+__pycache__/
+*.pyc
+.Python
+env/
+venv/
+.env
+.DS_Store
+*.egg-info/
+dist/
+build/

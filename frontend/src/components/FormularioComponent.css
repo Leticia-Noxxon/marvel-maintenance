@@ -1,0 +1,504 @@
+.formulario-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f0f4f8;
+}
+
+.formulario-card {
+  background: #f8f9fa;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.etapas {
+  display: flex;
+  background: #f8f9fa;
+  padding: 20px;
+  gap: 15px;
+  justify-content: space-around;
+  border-bottom: none;
+}
+
+.etapa-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.etapa-item.ativa {
+  opacity: 1;
+}
+
+.etapa-numero {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e3f2fd;
+  border-radius: 50%;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  color: #1976d2;
+}
+
+.etapa-item.ativa .etapa-numero {
+  background: #1976d2;
+  color: white;
+  transform: scale(1.1);
+}
+
+.etapa-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+}
+
+.etapa-conteudo {
+  padding: 30px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.etapa-conteudo h2 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+.form-grupo {
+  margin-bottom: 20px;
+}
+
+.form-grupo label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: #f9f9ff;
+}
+
+.info-localizado {
+  background: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  color: #2e7d32;
+  font-size: 14px;
+}
+
+.form-acoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 150px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-salvar {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-salvar:hover:not(:disabled) {
+  background: #1565c0;
+  transform: translateY(-2px);
+}
+
+.btn-proximo {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-proximo:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(25, 118, 210, 0.4);
+}
+
+.btn-voltar {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+}
+
+.btn-voltar:hover:not(:disabled) {
+  background: #bbdefb;
+}
+
+.btn-enviar {
+  background: #388e3c;
+  color: white;
+  font-size: 16px;
+}
+
+.btn-enviar:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(56, 142, 60, 0.4);
+}
+
+.foto-preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.foto-preview p {
+  color: #4caf50;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.foto-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.resumo-dados {
+  background: #f9f9ff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.resumo-dados h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.resumo-dados p {
+  color: #666;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.resumo-dados strong {
+  color: #333;
+}
+
+.mensagem {
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-weight: 600;
+  text-align: center;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mensagem.sucesso {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #4caf50;
+}
+
+.mensagem.erro {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #f44336;
+}
+
+.auto-salvo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* NOVOS ESTILOS PARA MANUTENÇÃO MARVEL */
+
+/* Seções de Equipamento */
+.secao-equipamento {
+  background: #ffffff;
+  border-left: 5px solid #1976d2;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 4px;
+}
+
+.secao-equipamento h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 16px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Groupos de Checkboxes */
+.checkboxes-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  color: #333;
+  height: 40px;
+}
+
+.checkbox-label:hover {
+  border-color: #1976d2;
+  background: #f9f9f9;
+}
+
+.checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: #1976d2;
+  flex-shrink: 0;
+}
+
+.checkbox-label input[type="checkbox"]:checked + * {
+  color: #1976d2;
+  font-weight: 600;
+}
+
+/* Select e Input */
+.form-grupo select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+  background: white;
+  cursor: pointer;
+}
+
+.form-grupo select:focus {
+  outline: none;
+  border-color: #667eea;
+  background: #f9f9ff;
+}
+
+.form-grupo textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+}
+
+.form-grupo textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: #f9f9ff;
+}
+
+/* Label auxiliar */
+.sublabel {
+  font-size: 12px;
+  color: #666;
+  font-weight: 400;
+  margin-top: 4px;
+  line-height: 1.6;
+}
+
+/* Grupos em linha */
+.form-grupo-linha {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.form-grupo-linha .form-grupo {
+  margin-bottom: 0;
+}
+
+/* Input de arquivo */
+.form-grupo input[type="file"] {
+  padding: 8px;
+  border: 2px dashed #667eea;
+  border-radius: 8px;
+  background: #f9f9ff;
+  cursor: pointer;
+}
+
+.form-grupo input[type="file"]::-webkit-file-upload-button {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+/* Sucesso */
+.sucesso {
+  color: #4caf50;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* Informações */
+.info-localizado {
+  background: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  color: #2e7d32;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .formulario-container {
+    padding: 10px;
+  }
+
+  .formulario-card {
+    border-radius: 12px;
+  }
+
+  .etapa-conteudo {
+    padding: 20px;
+  }
+
+  .btn {
+    min-width: 120px;
+    padding: 10px 16px;
+  }
+
+  .etapa-item.ativa .etapa-numero {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .etapas {
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .etapa-item {
+    gap: 4px;
+  }
+
+  .etapa-label {
+    font-size: 10px;
+  }
+
+  .checkboxes-group {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-grupo-linha {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .btn-voltar,
+  .btn-proximo {
+    flex: 1;
+  }
+}
