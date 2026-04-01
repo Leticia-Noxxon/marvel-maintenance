@@ -6,14 +6,15 @@ WORKDIR /app/frontend
 # Copiar package.json
 COPY frontend/package*.json ./
 
-# Instalar dependências
-RUN npm ci
+# Instalar dependências com NODE_OPTIONS para mais memória
+ENV NODE_OPTIONS="--max-old-space-size=2048"
+RUN npm ci --prefer-offline --no-audit
 
 # Copiar código fonte
 COPY frontend/ ./
 
 # Fazer build para produção
-RUN npm run build
+RUN npm run build --verbose
 
 # Usar imagem Python para o backend
 FROM python:3.11-slim
@@ -31,6 +32,18 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar código do backend
 COPY backend/ ./backend/
+
+# Criar arquivo .env padrão se não existir
+RUN if [ ! -f ./backend/.env ]; then \
+    echo "EMAIL_USER=nao-configurado" > ./backend/.env && \
+    echo "EMAIL_PASSWORD=nao-configurado" >> ./backend/.env && \
+    echo "EMAIL_DESTINO=nao-configurado@email.com" >> ./backend/.env && \
+    echo "PASTA_UPLOADS=./uploads" >> ./backend/.env && \
+    echo "FLASK_ENV=production" >> ./backend/.env && \
+    echo "FLASK_DEBUG=False" >> ./backend/.env && \
+    echo "PORT=8080" >> ./backend/.env && \
+    echo "CORS_ORIGIN=*" >> ./backend/.env; \
+fi
 
 # Copiar build do React
 COPY --from=react-build /app/frontend/build ./frontend/build
