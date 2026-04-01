@@ -14,9 +14,19 @@ from utils.excel_service import atualizar_excel_manutencoes
 # Carregar variáveis de ambiente
 load_dotenv()
 
-# Configurar pasta estática do React build (para produção)
-frontend_build_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'build')
+# Caminho absoluto para o build do React (funciona em dev e produção)
+app_root = os.path.dirname(os.path.abspath(__file__))
+frontend_build_path = os.path.join(app_root, '..', 'frontend', 'build')
+
+# Se não existir (em desenvolvimento), usar um padrão
+if not os.path.exists(frontend_build_path):
+    frontend_build_path = os.path.join(os.getcwd(), 'frontend', 'build')
+
+print(f"DEBUG: Frontend build path: {frontend_build_path}")
+print(f"DEBUG: Frontend path exists: {os.path.exists(frontend_build_path)}")
+
 app = Flask(__name__, static_folder=frontend_build_path, static_url_path='')
+print(f"DEBUG: Flask static folder: {app.static_folder}")
 CORS(app)
 
 # Configurações
