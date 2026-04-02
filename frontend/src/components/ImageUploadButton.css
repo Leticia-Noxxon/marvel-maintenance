@@ -1,0 +1,132 @@
+.image-upload-wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn-enviar-imagem {
+  background: #388e3c;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-enviar-imagem:hover {
+  background: #2e7d32;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+/* Menu de opções */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.menu-opcoes {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 300px;
+  width: 90%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.opcao-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.opcao-camera {
+  background: #1976d2;
+  color: white;
+}
+
+.opcao-camera:hover {
+  background: #1565c0;
+  transform: translateY(-2px);
+}
+
+.opcao-arquivo {
+  background: #388e3c;
+  color: white;
+}
+
+.opcao-arquivo:hover {
+  background: #2e7d32;
+  transform: translateY(-2px);
+}
+
+.opcao-cancelar {
+  background: #e0e0e0;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.opcao-cancelar:hover {
+  background: #d0d0d0;
+  transform: translateY(-2px);
+}
+
+/* Container e botão da câmera */
+.camera-container {
+  position: relative;
+}
+
+.btn-cancelar-camera {
+  width: 100%;
+  margin-top: 12px;
+  background: #e0e0e0;
+  color: #666;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-cancelar-camera:hover {
+  background: #d0d0d0;
+}
+
+/* Mensagem de sucesso */
+.sucesso {
+  color: #2e7d32;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 13px;
+}

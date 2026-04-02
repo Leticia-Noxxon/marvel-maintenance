@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import CameraComponent from './CameraComponent';
+import ImageUploadButton from './ImageUploadButton';
 import GeolocationComponent from './GeolocationComponent';
 import MapComponent from './MapComponent';
 import axios from 'axios';
@@ -270,7 +271,7 @@ const FormularioComponent = () => {
       const response = await axios.post(API_ENDPOINTS.ENVIAR_MANUTENCAO, formData);
 
       if (response.status === 200) {
-        setMensagem('✅ Formulário enviado com sucesso! PDF foi gerado e email enviado.');
+        setMensagem('✅ Formulário enviado com sucesso!');
         localStorage.removeItem('manutencaoMarvel');
         setFormData({
           nome: '',
@@ -413,35 +414,11 @@ const FormularioComponent = () => {
 
             <div className="form-grupo">
               <label>Foto da Frente do Ônibus *</label>
-              <div className="foto-input-container">
-                <CameraComponent 
-                  onFoto={(foto) => handleFoto(foto, 'foto_frente_onibus')} 
-                  geolocation={formData}
-                />
-                <div className="divisor-ou">ou</div>
-                <label className="input-arquivo-label">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      if (e.target.files[0]) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                          handleFoto(event.target.result, 'foto_frente_onibus');
-                        };
-                        reader.readAsDataURL(e.target.files[0]);
-                      }
-                    }}
-                    style={{ display: 'none' }}
-                  />
-                  Selecionar do Celular
-                </label>
-              </div>
-              {formData.foto_frente_onibus && (
-                <div className="foto-preview">
-                  <p>✅ Foto da frente capturada</p>
-                </div>
-              )}
+              <ImageUploadButton 
+                onFoto={(foto) => handleFoto(foto, 'foto_frente_onibus')} 
+                geolocation={formData}
+                label="Enviar Imagem"
+              />
             </div>
 
             <GeolocationComponent onGeolocation={handleGeolocation} />
@@ -496,11 +473,11 @@ const FormularioComponent = () => {
               {formData.ucp_problemas.length > 0 && (
                 <div className="form-grupo">
                   <label>Imagem Antes da Verificação (Obrigatória) *</label>
-                  <CameraComponent 
+                  <ImageUploadButton 
                     onFoto={(foto) => handleFoto(foto, 'ucp_foto_antes')} 
                     geolocation={formData}
+                    label="Enviar Imagem"
                   />
-                  {formData.ucp_foto_antes && <p className="sucesso">Foto capturada</p>}
                 </div>
               )}
 
@@ -521,11 +498,11 @@ const FormularioComponent = () => {
               {formData.ucp_acoes.length > 0 && (
                 <div className="form-grupo">
                   <label>Imagem Após Ações Realizadas</label>
-                  <CameraComponent 
+                  <ImageUploadButton 
                     onFoto={(foto) => handleFoto(foto, 'ucp_foto_depois')} 
                     geolocation={formData}
+                    label="Enviar Imagem"
                   />
-                  {formData.ucp_foto_depois && <p className="sucesso">Foto capturada</p>}
                 </div>
               )}
             </div>
@@ -564,11 +541,11 @@ const FormularioComponent = () => {
               {formData.tdm_problemas.length > 0 && (
                 <div className="form-grupo">
                   <label>Imagem Antes da Verificação (Obrigatória) *</label>
-                  <CameraComponent 
+                  <ImageUploadButton 
                     onFoto={(foto) => handleFoto(foto, 'tdm_foto_antes')} 
                     geolocation={formData}
+                    label="Enviar Imagem"
                   />
-                  {formData.tdm_foto_antes && <p className="sucesso">Foto capturada</p>}
                 </div>
               )}
 
@@ -589,11 +566,11 @@ const FormularioComponent = () => {
               {formData.tdm_acoes.length > 0 && (
                 <div className="form-grupo">
                   <label>Imagem Após Ações Realizadas</label>
-                  <CameraComponent 
+                  <ImageUploadButton 
                     onFoto={(foto) => handleFoto(foto, 'tdm_foto_depois')} 
                     geolocation={formData}
+                    label="Enviar Imagem"
                   />
-                  {formData.tdm_foto_depois && <p className="sucesso">Foto capturada</p>}
                 </div>
               )}
             </div>
@@ -632,11 +609,11 @@ const FormularioComponent = () => {
               {formData.switch_problemas.length > 0 && (
                 <div className="form-grupo">
                   <label>Imagem Antes da Verificação (Obrigatória) *</label>
-                  <CameraComponent 
+                  <ImageUploadButton 
                     onFoto={(foto) => handleFoto(foto, 'switch_foto_antes')} 
                     geolocation={formData}
+                    label="Enviar Imagem"
                   />
-                  {formData.switch_foto_antes && <p className="sucesso">Foto capturada</p>}
                 </div>
               )}
 
@@ -657,11 +634,11 @@ const FormularioComponent = () => {
               {formData.switch_acoes.length > 0 && (
                 <div className="form-grupo">
                   <label>Imagem Após Ações Realizadas</label>
-                  <CameraComponent 
+                  <ImageUploadButton 
                     onFoto={(foto) => handleFoto(foto, 'switch_foto_depois')} 
                     geolocation={formData}
+                    label="Enviar Imagem"
                   />
-                  {formData.switch_foto_depois && <p className="sucesso">Foto capturada</p>}
                 </div>
               )}
             </div>
@@ -700,11 +677,11 @@ const FormularioComponent = () => {
               {formData.antena_problemas.length > 0 && (
                 <div className="form-grupo">
                   <label>Imagem Antes da Verificação (Obrigatória) *</label>
-                  <CameraComponent 
+                  <ImageUploadButton 
                     onFoto={(foto) => handleFoto(foto, 'antena_foto_antes')} 
                     geolocation={formData}
+                    label="Enviar Imagem"
                   />
-                  {formData.antena_foto_antes && <p className="sucesso">Foto capturada</p>}
                 </div>
               )}
 
@@ -725,11 +702,11 @@ const FormularioComponent = () => {
               {formData.antena_acoes.length > 0 && (
                 <div className="form-grupo">
                   <label>Imagem Após Ações Realizadas</label>
-                  <CameraComponent 
+                  <ImageUploadButton 
                     onFoto={(foto) => handleFoto(foto, 'antena_foto_depois')} 
                     geolocation={formData}
+                    label="Enviar Imagem"
                   />
-                  {formData.antena_foto_depois && <p className="sucesso">Foto capturada</p>}
                 </div>
               )}
             </div>
