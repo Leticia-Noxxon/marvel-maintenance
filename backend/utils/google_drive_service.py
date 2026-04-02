@@ -4,7 +4,7 @@ import base64
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
-from google.api_core.exceptions import HttpError
+from googleapiclient.errors import HttpError
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload, MediaIoBaseUpload
 from datetime import datetime
