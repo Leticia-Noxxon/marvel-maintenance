@@ -10,6 +10,7 @@ from utils.email_service import enviar_email, gerar_corpo_email, gerar_corpo_ema
 from utils.pdf_service import gerar_pdf, gerar_pdf_manutencao
 from utils.sheets_service import enviar_para_google_sheets
 from utils.excel_service import atualizar_excel_manutencoes
+from utils.google_drive_service import fazer_upload_imagem_para_drive, fazer_upload_pdf_para_drive
 
 # Carregar variáveis de ambiente
 load_dotenv()
@@ -35,6 +36,46 @@ PASTA_UPLOADS = os.getenv('PASTA_UPLOADS', 'uploads')
 
 # Criar pasta de uploads se não existir
 os.makedirs(PASTA_UPLOADS, exist_ok=True)
+
+
+def fazer_upload_imagens_google_drive(dados):
+    """
+    Faz upload de todas as imagens para o Google Drive
+    Retorna dados atualizados com URLs públicas
+    """
+    campos_imagem = [
+        'foto_frente_onibus',
+        'ucp_foto_antes', 'ucp_foto_depois',
+        'tdm_foto_antes', 'tdm_foto_depois',
+        'switch_foto_antes', 'switch_foto_depois',
+        'antena_foto_antes', 'antena_foto_depois',
+        'imagens_adicionais'
+    ]
+    
+    for campo in campos_imagem:
+        if campo in dados and dados[campo]:
+            # Se é lista (imagens adicionais)
+            if isinstance(dados[campo], list):
+                urls = []
+                for idx, imagem in enumerate(dados[campo]):
+                    if imagem:
+                        url = fazer_upload_imagem_para_drive(
+                            imagem, 
+                            f"{dados.get('prefixo', 'foto')}_adicional_{idx}.jpg"
+                        )
+                        if url:
+                            urls.append(url)
+                dados[f'{campo}_url'] = urls
+            else:
+                # Se é uma imagem única
+                url = fazer_upload_imagem_para_drive(
+                    dados[campo],
+                    f"{dados.get('prefixo', 'foto')}_{campo}.jpg"
+                )
+                if url:
+                    dados[f'{campo}_url'] = url
+    
+    return dados
 
 
 @app.route('/api/health', methods=['GET'])
@@ -304,6 +345,13 @@ def enviar_manutencao():
                 'status': 'erro',
                 'message': f'Erro ao gerar PDF: {str(e)}'
             }), 500
+
+        # Fazer upload das imagens para Google Drive (não bloqueia se falhar)
+        print("Iniciando upload de imagens para Google Drive...")
+        try:
+            dados = fazer_upload_imagens_google_drive(dados)
+        except Exception as e:
+            print(f"Aviso: Erro ao fazer upload de imagens: {str(e)}")
 
         # Gerar corpo do email adaptado para manutenção
         corpo_html = gerar_corpo_email_manutencao(dados)

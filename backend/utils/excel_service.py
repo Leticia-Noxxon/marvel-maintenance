@@ -1,7 +1,21 @@
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.worksheet.hyperlink import Hyperlink
 from datetime import datetime
 import os
+
+def adicionar_hyperlink_imagem(cell, url_imagem):
+    """
+    Adiciona um hyperlink clicável em uma célula do Excel
+    Ao clicar, abre a imagem no Google Drive
+    """
+    if url_imagem and url_imagem.startswith('http'):
+        cell.value = "🖼️ Ver Imagem"
+        cell.hyperlink = Hyperlink(ref=cell.coordinate, target=url_imagem)
+        cell.font = Font(color="0563C1", underline="single")
+    else:
+        cell.value = "-"
+    return cell
 
 def atualizar_excel_manutencoes(dados_manutencao, caminho_excel='uploads/Manutenções_Marvel.xlsx'):
     """
@@ -54,29 +68,35 @@ def atualizar_excel_manutencoes(dados_manutencao, caminho_excel='uploads/Manuten
             dados_manutencao.get('longitude', ''),
             ', '.join(dados_manutencao.get('ucp_problemas', [])),
             ', '.join(dados_manutencao.get('ucp_acoes', [])),
-            'Imagem', # Placeholder
-            'Imagem',
+            dados_manutencao.get('ucp_foto_antes_url', None),  # URL do Google Drive
+            dados_manutencao.get('ucp_foto_depois_url', None),
             ', '.join(dados_manutencao.get('tdm_problemas', [])),
             ', '.join(dados_manutencao.get('tdm_acoes', [])),
-            'Imagem',
-            'Imagem',
+            dados_manutencao.get('tdm_foto_antes_url', None),
+            dados_manutencao.get('tdm_foto_depois_url', None),
             ', '.join(dados_manutencao.get('switch_problemas', [])),
             ', '.join(dados_manutencao.get('switch_acoes', [])),
-            'Imagem',
-            'Imagem',
+            dados_manutencao.get('switch_foto_antes_url', None),
+            dados_manutencao.get('switch_foto_depois_url', None),
             ', '.join(dados_manutencao.get('antena_problemas', [])),
             ', '.join(dados_manutencao.get('antena_acoes', [])),
-            'Imagem',
-            'Imagem',
+            dados_manutencao.get('antena_foto_antes_url', None),
+            dados_manutencao.get('antena_foto_depois_url', None),
             dados_manutencao.get('observacao', ''),
-            'Imagem'
+            dados_manutencao.get('foto_frente_onibus_url', None)
         ]
 
-        # Inserir dados
+        # Inserir dados e adicionar hyperlinks para URLs
         for col, valor in enumerate(nova_linha, 1):
             cell = ws.cell(row=linha_inicio, column=col)
-            cell.value = valor
-            cell.alignment = Alignment(horizontal="left", vertical="top", wrap_text=True)
+            
+            # Se é uma URL de imagem, adicionar hyperlink
+            if valor and isinstance(valor, str) and valor.startswith('http'):
+                adicionar_hyperlink_imagem(cell, valor)
+                cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+            else:
+                cell.value = valor
+                cell.alignment = Alignment(horizontal="left", vertical="top", wrap_text=True)
             
             # Adicionar borda
             thin_border = Border(
