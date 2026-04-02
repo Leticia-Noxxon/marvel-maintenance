@@ -413,10 +413,30 @@ const FormularioComponent = () => {
 
             <div className="form-grupo">
               <label>Foto da Frente do Ônibus *</label>
-              <CameraComponent 
-                onFoto={(foto) => handleFoto(foto, 'foto_frente_onibus')} 
-                geolocation={formData}
-              />
+              <div className="foto-input-container">
+                <CameraComponent 
+                  onFoto={(foto) => handleFoto(foto, 'foto_frente_onibus')} 
+                  geolocation={formData}
+                />
+                <div className="divisor-ou">ou</div>
+                <label className="input-arquivo-label">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      if (e.target.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                          handleFoto(event.target.result, 'foto_frente_onibus');
+                        };
+                        reader.readAsDataURL(e.target.files[0]);
+                      }
+                    }}
+                    style={{ display: 'none' }}
+                  />
+                  Selecionar do Celular
+                </label>
+              </div>
               {formData.foto_frente_onibus && (
                 <div className="foto-preview">
                   <p>✅ Foto da frente capturada</p>
@@ -432,10 +452,7 @@ const FormularioComponent = () => {
               </div>
             )}
 
-            <div className="form-grupo">
-              <button type="button" className="btn btn-salvar" onClick={handleSalvar}>
-                Salvar Rascunho
-              </button>
+            <div className="form-grupo botoes-grupo">
               <button 
                 type="button" 
                 className="btn btn-proximo"

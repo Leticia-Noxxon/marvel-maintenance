@@ -403,6 +403,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
+  margin-bottom: 30px;
 }
 
 .form-grupo-linha .form-grupo {
@@ -416,6 +417,46 @@
   border-radius: 8px;
   background: #f9f9ff;
   cursor: pointer;
+}
+
+/* Container para foto (câmera + upload) */
+.foto-input-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.divisor-ou {
+  font-weight: 600;
+  color: #999;
+  padding: 0 10px;
+}
+
+/* Label para input file estilizado como botão */
+.input-arquivo-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #388e3c;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+}
+
+.input-arquivo-label:hover {
+  background: #2e7d32;
+}
+
+/* Grupo de botões alinhado à direita */
+.botoes-grupo {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
 }
 
 .form-grupo input[type="file"]::-webkit-file-upload-button {
